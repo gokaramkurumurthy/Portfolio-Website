@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply transition-colors duration-200;
+  }
+}
+
+.section-padding {
+  @apply py-24 px-4 sm:px-6 lg:px-8;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-700 animate-gradient;
+}
+
+.nav-link {
+  @apply relative text-sm font-medium cursor-pointer transition-colors duration-200;
+}
+
+.nav-link::after {
+  @apply content-[''] absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-500 dark:bg-blue-400 transition-all duration-300;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+.project-card {
+  @apply transform transition duration-300 hover:-translate-y-2 hover:shadow-xl;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.skill-card {
+  @apply transform transition duration-300 hover:scale-105 bg-white dark:bg-gray-800 rounded-lg p-6;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-menu {
+  @apply fixed inset-0 z-[100] bg-white dark:bg-gray-900 transition-all duration-300;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.mobile-menu.hidden {
+  @apply opacity-0 pointer-events-none;
+  transform: translateY(-100%);
+}
+
+.mobile-menu.visible {
+  @apply opacity-100 pointer-events-auto;
+  transform: translateY(0);
+}
+
+.mobile-menu-link {
+  @apply block w-full text-center py-4 text-lg font-medium text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200;
+}
+
+.footer-link {
+  @apply text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200;
+}
+
+.footer-heading {
+  @apply text-xl font-semibold text-gray-900 dark:text-gray-100 mb-6;
+}
+
+.footer-section {
+  @apply space-y-4;
+}
+
+.contact-form {
+  @apply bg-white dark:bg-gray-800 rounded-lg p-8;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+  @apply px-6 py-3 rounded-md text-white font-medium transition-all duration-300;
+  background: linear-gradient(to right, #2196F3, #1E88E5);
+}
+
+.btn-primary:hover {
+  @apply shadow-lg transform -translate-y-0.5;
+  background: linear-gradient(to right, #1E88E5, #1976D2);
+}
+
+.navbar {
+  @apply fixed w-full top-0 z-[99] transition-all duration-300;
+  backdrop-filter: blur(10px);
+}
+
+.navbar-scrolled {
+  @apply bg-white/90 dark:bg-gray-900/90 shadow-md;
+}
+
+.skill-icon {
+  @apply text-3xl text-blue-500 dark:text-blue-400 mb-3;
+}
+
+.section-heading {
+  @apply text-3xl font-bold text-gray-900 dark:text-gray-100 mb-12 text-center;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, rgba(33, 150, 243, 0.1), rgba(30, 136, 229, 0.1));
+}
+
+body.menu-open {
+  @apply overflow-hidden;
+}
+
+.about-image {
+  @apply w-[300px] h-[300px] object-cover rounded-lg mx-auto;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
