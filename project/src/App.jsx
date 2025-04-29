@@ -79,7 +79,7 @@ function App() {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/projects');
+      const response = await fetch('https://gk-portfolio-backend.onrender.com/api/projects');
       const data = await response.json();
       setProjects(data);
     } catch (error) {
@@ -89,7 +89,7 @@ function App() {
 
   const fetchSkills = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/skills');
+      const response = await fetch('https://gk-portfolio-backend.onrender.com/api/skills');
       const data = await response.json();
       setSkills(data);
     } catch (error) {
@@ -102,7 +102,7 @@ function App() {
     setFormStatus('Sending message...');  // Update status while sending the message
   
     try {
-      const response = await fetch('http://localhost:5000/api/contact', {
+      const response = await fetch('https://gk-portfolio-backend.onrender.com/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -227,7 +227,8 @@ function App() {
           <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary-600 to-sky-600 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
         </div>
         
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-2xl -mt-12">
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -235,7 +236,7 @@ function App() {
             className="text-center"
           >
             <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-4  ">
-              <span className="block text-gray-900 dark:text-gray-100 text-[50px] mb-4">Hi, I'm </span><b/>
+              <span className="block text-gray-900 dark:text-gray-100 mb-4">Hi, I'm </span><b/>
               <span className="gradient-text text-primary-500 dark:text-primary-300">Gokaram Kurumurthy</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
@@ -254,7 +255,7 @@ function App() {
                 View My Work
               </Link>
               <a
-  href="public/Gokaram Kurumurthy.pdf"
+  href="/Gokaram Kurumurthy.pdf"
   download
   className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100 cursor-pointer hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
 >
@@ -263,7 +264,9 @@ function App() {
 
             </div>
           </motion.div>
+
         </div>
+
       </section>
 
       {/* About Section */}
@@ -278,30 +281,40 @@ function App() {
           >
 
 
-<div style={{ padding: "16px" }}>
-  <img 
-    style={{ 
-      width: "55%", 
-      height: "55%", 
-      borderRadius: "50%", 
-      padding: "3px", // Adds gap between the image and the border
-      boxShadow: "0 0 25px rgba(33,150,243,0.5)", // Stronger bluish light shadow for a more intense glow
-      transition: "all 0.5s ease-in-out" // Smooth transition effect for the hover
+<div
+  style={{
+    padding: "16px",
+    display: "flex",
+    justifyContent: "center",
+  }}
+>
+  <img
+    style={{
+      width: "90%", // Bigger width on mobile
+      maxWidth: "500px", // Limits size on large screens
+      height: "auto", // Maintains aspect ratio
+      padding: "3px",
+      boxShadow: "0 0 25px rgba(33,150,243,0.5)",
+      transition: "all 0.5s ease-in-out",
     }}
-    src="./src/gk.jpeg"
+    src="/gk.jpeg"
     alt="Profile"
-    className="about-image hover:shadow-[0_0_35px rgba(33,150,243,0.7)] hover:border-[#42A5F5] transition-all duration-500 ease-in-out"
+    className="about-image hover:shadow-[0_0_35px_rgba(33,150,243,0.7)] hover:border-[#42A5F5] transition-all duration-500 ease-in-out"
   />
 </div>
 
-            <div>
 
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 mb-6 ">About Me</h2>
-              <p className="text-lg leading-8 text-gray-600 dark:text-gray-300 mb-8">
-                I'm a passionate Full Stack Developer with expertise in building scalable web applications
-                and microservices. With a strong foundation in both frontend and backend technologies,
-                I create efficient, user-friendly solutions that solve real-world problems.
-              </p>
+<div className="max-w-3xl mx-auto">
+
+<h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-center text-gray-900 dark:text-gray-100 mb-4">
+About Me
+</h2>
+<p className="text-base sm:text-lg leading-7 text-justify text-gray-600 dark:text-gray-300 mb-6">
+I'm a passionate Full Stack Developer with expertise in building scalable web applications
+  and microservices. With a strong foundation in both frontend and backend technologies,
+  I create efficient, user-friendly solutions that solve real-world problems.
+</p>
+
 
 <div className="flex gap-6">
   <a
@@ -329,7 +342,10 @@ function App() {
     <FaInstagram className="h-6 w-6" />
   </a>
 </div>
-            </div>
+</div>
+
+
+
           </motion.div>
         </div>
       </section>
@@ -379,6 +395,7 @@ function App() {
     </h2>
     <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
       {projects.map((project, index) => (
+        
   <motion.div
   key={project.title}
   initial={{ opacity: 0, y: 20 }}
