@@ -187,183 +187,221 @@ function App() {
 
         {/* Mobile menu */}
         <div className={`mobile-menu ${isMobileMenuOpen ? 'visible' : 'hidden'}`}>
-          <div className="flex flex-col items-center justify-center min-h-screen space-y-2 pt-16">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                smooth={true}
-                duration={500}
-                className="mobile-menu-link"
-                onClick={closeMobileMenu}
-              >
-                {item.name}
-              </Link>
-            ))}
-            <button
-              onClick={() => {
-                setIsDark(!isDark)
-                closeMobileMenu()
-              }}
-              className="mobile-menu-link flex items-center justify-center gap-2"
-            >
-              {isDark ? (
-                <>
-                  Light Mode
-                </>
-              ) : (
-                <>
-                  Dark Mode
-                </>
-              )}
-            </button>
-          </div>
-        </div>
+  <div className="flex flex-col items-center justify-start space-y-4 pt-8 pb-16">
+    {navigation.map((item) => (
+      <Link
+        key={item.name}
+        to={item.href}
+        smooth={true}
+        duration={500}
+        className="mobile-menu-link"
+        onClick={closeMobileMenu}
+      >
+        {item.name}
+      </Link>
+    ))}
+    <button
+      onClick={() => {
+        setIsDark(!isDark);
+        closeMobileMenu();
+      }}
+      className="mobile-menu-link flex items-center justify-center gap-2"
+    >
+      {isDark ? 'Light Mode' : 'Dark Mode'}
+    </button>
+  </div>
+</div>
+
+
       </header>
 
-      {/* Hero Section */}
-      <section id="home" className="relative isolate px-6 pt-14 lg:px-8 min-h-screen flex items-center">
-        <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
-          <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary-600 to-sky-600 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
-        </div>
-        
-        <div className="mx-auto max-w-2xl -mt-12">
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl mb-4  ">
-              <span className="block text-gray-900 dark:text-gray-100 mb-4">Hi, I'm </span><b/>
-              <span className="gradient-text text-primary-500 dark:text-primary-300">Gokaram Kurumurthy</span>
-            </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Full Stack Developer
-            </p>
-            <p className="mt-2 text-lg leading-8 text-gray-600 dark:text-gray-300">
-              Crafting exceptional digital experiences with modern technologies
-            </p>
-            <div className="mt-10 flex items-center justify-center gap-x-6">
-              <Link
-                to="projects"
-                smooth={true}
-                duration={500}
-                className="rounded-md bg-primary-600 dark:bg-primary-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 dark:hover:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 cursor-pointer transition-colors duration-200"
-              >
-                View My Work
-              </Link>
-              <a
-  href="/Gokaram Kurumurthy.pdf"
-  download
-  className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100 cursor-pointer hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
->
-  Download Resume <span aria-hidden="true">→</span>
-</a>
+{/* updated home */}
 
-            </div>
-          </motion.div>
+  <section id="home" className="relative isolate px-6 pt-14 lg:px-8 min-h-screen flex items-center">
+  <div className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
+    <div className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-primary-600 to-sky-600 opacity-20 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"></div>
+  </div>
 
-        </div>
+  <div className="mx-auto max-w-2xl -mt-24">
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            type: "spring",
+            stiffness: 60,
+            damping: 20,
+            delayChildren: 0.3,
+            staggerChildren: 0.25,
+          },
+        },
+      }}
+      className="text-center"
+    >
+      <motion.h1
+        variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+        className="text-4xl font-bold tracking-tight sm:text-6xl mb-4"
+      >
+        <span className="block text-gray-900 dark:text-gray-100 mb-4">Hi, I'm </span>
+        <span className="gradient-text text-primary-500 dark:text-primary-300">Gokaram Kurumurthy</span>
+      </motion.h1>
 
-      </section>
+      <motion.p
+        variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+        className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300"
+      >
+        Full Stack Developer
+      </motion.p>
 
-      {/* About Section */}
-      <section id="about" className="section-padding bg-gray-50 dark:bg-dark-800">
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center"
-          >
+      <motion.p
+        variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
+        transition={{ duration: 2, ease: "easeInOut" }}
+        className="mt-2 text-lg leading-8 text-gray-600 dark:text-gray-300"
+      >
+        Crafting exceptional digital experiences with modern technologies
+      </motion.p>
 
-
-<div
-  style={{
-    padding: "16px",
-    display: "flex",
-    justifyContent: "center",
-  }}
->
-  <img
-    style={{
-      width: "90%", // Bigger width on mobile
-      maxWidth: "500px", // Limits size on large screens
-      height: "auto", // Maintains aspect ratio
-      padding: "3px",
-      boxShadow: "0 0 25px rgba(33,150,243,0.5)",
-      transition: "all 0.5s ease-in-out",
-    }}
-    src="/gk.jpeg"
-    alt="Profile"
-    className="about-image hover:shadow-[0_0_35px_rgba(33,150,243,0.7)] hover:border-[#42A5F5] transition-all duration-500 ease-in-out"
-  />
-</div>
+      <motion.div
+        variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+        transition={{ duration: 1.6, ease: "easeInOut" }}
+        className="mt-10 flex items-center justify-center gap-x-6"
+      >
+        <Link
+          to="projects"
+          smooth={true}
+          duration={600}
+          className="rounded-md bg-primary-600 dark:bg-primary-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 dark:hover:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 cursor-pointer transition-all duration-500 ease-in-out"
+        >
+          View My Work
+        </Link>
+        <a
+          href="/Kurumurthy Full stack Resume.pdf"
+          download
+          className="text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100 cursor-pointer hover:text-primary-600 dark:hover:text-primary-400 transition-all duration-500 ease-in-out"
+        >
+          Download Resume <span aria-hidden="true">→</span>
+        </a>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
 
 
-<div className="max-w-3xl mx-auto">
-
-<h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-center text-gray-900 dark:text-gray-100 mb-4">
-About Me
-</h2>
-<p className="text-base sm:text-lg leading-7 text-justify text-gray-600 dark:text-gray-300 mb-6">
-I'm a passionate Full Stack Developer with expertise in building scalable web applications
-  and microservices. With a strong foundation in both frontend and backend technologies,
-  I create efficient, user-friendly solutions that solve real-world problems.
-</p>
-
-
-<div className="flex gap-6">
-  <a
-    href="https://github.com/gokaramkurumurthy"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-500 transform transition-transform duration-300 hover:scale-[1.03] hover:shadow-md hover:shadow-blue-400/50 rounded-full"
-  >
-    <FaGithub className="h-6 w-6" />
-  </a>
-  <a
-    href="https://www.linkedin.com/in/gokaram-kurumurthy-174134339/"
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-500 transform transition-transform duration-300 hover:scale-[1.03] hover:shadow-md hover:shadow-blue-400/50 rounded-full"
-  >
-    <FaLinkedin className="h-6 w-6" />
-  </a>
-  <a
-    href="https://www.instagram.com/call_me_gk__2312?igsh=MXRjeGhzN2F2c3hvOQ=="
-    target="_blank"
-    rel="noopener noreferrer"
-    className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-500 transform transition-transform duration-300 hover:scale-[1.03] hover:shadow-md hover:shadow-blue-400/50 rounded-full"
-  >
-    <FaInstagram className="h-6 w-6" />
-  </a>
-</div>
-</div>
-
-
-
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-  <section id="skills" className="section-padding">
+{/* About Section2  */}
+<section id="about" className="section-padding bg-gray-50 dark:bg-dark-800">
   <div className="mx-auto max-w-7xl">
-    <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 text-center mb-12">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center"
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        viewport={{ once: true }}
+        style={{
+          padding: "16px",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <img
+          src="/gk.jpeg"
+          alt="Profile"
+          style={{
+            width: "90%",
+            maxWidth: "500px",
+            height: "auto",
+            padding: "3px",
+            boxShadow: "0 0 25px rgba(33,150,243,0.5)",
+            transition: "all 0.5s ease-in-out",
+          }}
+          className="about-image hover:shadow-[0_0_35px_rgba(33,150,243,0.7)] hover:border-[#42A5F5] transition-all duration-500 ease-in-out"
+        />
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+        viewport={{ once: true }}
+        className="max-w-3xl mx-auto"
+      >
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-center text-gray-900 dark:text-gray-100 mb-4">
+          About Me
+        </h2>
+        <p className="text-base sm:text-lg leading-7 text-justify text-gray-600 dark:text-gray-300 mb-6">
+          I'm a passionate Full Stack Developer with expertise in building scalable web applications
+          and microservices. With a strong foundation in both frontend and backend technologies,
+          I create efficient, user-friendly solutions that solve real-world problems.
+        </p>
+
+        <div className="flex gap-6 justify-center">
+          <a
+            href="https://github.com/gokaramkurumurthy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-500 transform transition-transform duration-300 hover:scale-[1.05] hover:shadow-md hover:shadow-blue-400/50 rounded-full"
+          >
+            <FaGithub className="h-6 w-6" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/gokaram-kurumurthy-174134339/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-500 transform transition-transform duration-300 hover:scale-[1.05] hover:shadow-md hover:shadow-blue-400/50 rounded-full"
+          >
+            <FaLinkedin className="h-6 w-6" />
+          </a>
+          <a
+            href="https://www.instagram.com/call_me_gk__2312?igsh=MXRjeGhzN2F2c3hvOQ=="
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-500 transform transition-transform duration-300 hover:scale-[1.05] hover:shadow-md hover:shadow-blue-400/50 rounded-full"
+          >
+            <FaInstagram className="h-6 w-6" />
+          </a>
+        </div>
+      </motion.div>
+    </motion.div>
+  </div>
+</section>
+
+
+
+{/* skills2 */}
+<section id="skills" className="section-padding bg-gray-50 dark:bg-dark-900">
+  <div className="mx-auto max-w-7xl">
+    <motion.h2
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 text-center mb-12"
+    >
       Skills & Expertise
-    </h2>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {skills.map((skillGroup, index) => (
-        <motion.div
+    </motion.h2>
+
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+    >
+      {skills.map((skillGroup) => (
+        <div
           key={skillGroup.category}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-          viewport={{ once: true }}
           className="bg-white dark:bg-dark-800 rounded-lg p-6 shadow-md transform transition-transform duration-300 hover:scale-[1.03] hover:shadow-blue-400/50 hover:shadow-md"
         >
           <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
@@ -373,38 +411,45 @@ I'm a passionate Full Stack Developer with expertise in building scalable web ap
             {skillGroup.items.map((skill) => (
               <span
                 key={skill}
-                className="inline-flex items-center rounded-md bg-primary-50 dark:bg-primary-900/50 px-2 py-1 text-sm font-medium text-primary-700 dark:text-primary-300"
+                className="inline-flex items-center rounded-md bg-primary-50 dark:bg-primary-900/50 px-2 py-1 text-sm font-medium text-primary-700 dark:text-primary-300 transition-all duration-300"
               >
                 {skill}
               </span>
             ))}
           </div>
-        </motion.div>
+        </div>
       ))}
-    </div>
+    </motion.div>
   </div>
 </section>
 
 
 
-      {/* Projects Section */}
-<section id="projects" className="section-padding bg-gray-50 dark:bg-dark-800">
+      {/* Projects Section2 */}
+      <section id="projects" className="section-padding bg-gray-50 dark:bg-dark-800">
   <div className="mx-auto max-w-7xl">
-    <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 text-center mb-12">
+    <motion.h2
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, ease: 'easeOut' }}
+      viewport={{ once: true }}
+      className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 text-center mb-12"
+    >
       Featured Projects
-    </h2>
-    <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
-      {projects.map((project, index) => (
-        
-  <motion.div
-  key={project.title}
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.5, delay: index * 0.1 }}
-  viewport={{ once: true }}
-  className="project-card flex flex-col overflow-hidden rounded-lg shadow-md bg-white dark:bg-dark-800 transform transition-transform duration-300 hover:scale-105 shadow-blue-400/70 hover:shadow-blue-400/80 hover:shadow-lg"
->
+    </motion.h2>
 
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, ease: 'easeOut' }}
+      viewport={{ once: true }}
+      className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3"
+    >
+      {projects.map((project) => (
+        <div
+          key={project.title}
+          className="project-card flex flex-col overflow-hidden rounded-lg shadow-md bg-white dark:bg-dark-800 transform transition-transform duration-300 hover:scale-105 shadow-blue-400/70 hover:shadow-blue-400/80 hover:shadow-lg"
+        >
           <div className="flex-shrink-0">
             <img
               className="h-48 w-full object-cover transition-transform duration-300 hover:scale-110"
@@ -414,8 +459,12 @@ I'm a passionate Full Stack Developer with expertise in building scalable web ap
           </div>
           <div className="flex flex-1 flex-col justify-between p-6">
             <div className="flex-1">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">{project.title}</h3>
-              <p className="mt-3 text-base text-gray-500 dark:text-gray-400">{project.description}</p>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
+                {project.title}
+              </h3>
+              <p className="mt-3 text-base text-gray-500 dark:text-gray-400">
+                {project.description}
+              </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {project.tech.map((tech) => (
                   <span
@@ -429,7 +478,7 @@ I'm a passionate Full Stack Developer with expertise in building scalable web ap
             </div>
             <div className="mt-6 flex gap-4">
               <a
-                href='#'
+                href="#"
                 className="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline transition-all duration-200"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -446,27 +495,44 @@ I'm a passionate Full Stack Developer with expertise in building scalable web ap
               </a>
             </div>
           </div>
-
-        </motion.div>
+        </div>
       ))}
-    </div>
+    </motion.div>
   </div>
 </section>
-
 
 
 
       {/* Contact Section */}
       <section id="contact" className="section-padding">
   <div className="mx-auto max-w-7xl">
-    <div className="text-center">
-      <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">Get in Touch</h2>
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, ease: 'easeOut' }}
+      viewport={{ once: true }}
+      className="text-center"
+    >
+      <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
+        Get in Touch
+      </h2>
       <p className="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-300">
         Have a project in mind? Let's work together!
       </p>
-    </div>
-    <div className="mx-auto mt-16 max-w-xl">
-      <form onSubmit={handleContactSubmit} className="grid grid-cols-1 gap-y-6 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-md hover:shadow-blue-400/50 transform transition-transform duration-300 hover:scale-[1.02] bg-white dark:bg-dark-800">
+    </motion.div>
+
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.9, ease: 'easeOut' }}
+      viewport={{ once: true }}
+      className="mx-auto mt-16 max-w-xl"
+    >
+      <form
+        onSubmit={handleContactSubmit}
+        className="grid grid-cols-1 gap-y-6 border border-gray-200 dark:border-gray-700 rounded-xl p-6 shadow-md hover:shadow-blue-400/50 transform transition-transform duration-300 hover:scale-[1.02] bg-white dark:bg-dark-800"
+      >
+        {/* Name */}
         <div>
           <label htmlFor="name" className="block text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100">
             Name
@@ -482,6 +548,8 @@ I'm a passionate Full Stack Developer with expertise in building scalable web ap
             />
           </div>
         </div>
+
+        {/* Email */}
         <div>
           <label htmlFor="email" className="block text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100">
             Email
@@ -497,6 +565,8 @@ I'm a passionate Full Stack Developer with expertise in building scalable web ap
             />
           </div>
         </div>
+
+        {/* Message */}
         <div>
           <label htmlFor="message" className="block text-sm font-semibold leading-6 text-gray-900 dark:text-gray-100">
             Message
@@ -512,11 +582,15 @@ I'm a passionate Full Stack Developer with expertise in building scalable web ap
             />
           </div>
         </div>
+
+        {/* Status message */}
         {formStatus && (
           <div className={`text-center ${formStatus.includes('Error') ? 'text-red-500' : 'text-green-500'}`}>
             {formStatus}
           </div>
         )}
+
+        {/* Submit button */}
         <div>
           <button
             type="submit"
@@ -526,9 +600,10 @@ I'm a passionate Full Stack Developer with expertise in building scalable web ap
           </button>
         </div>
       </form>
-    </div>
+    </motion.div>
   </div>
 </section>
+
 
 
       {/* Footer */}
@@ -599,6 +674,7 @@ I'm a passionate Full Stack Developer with expertise in building scalable web ap
 
   </div>
 </footer>
+
     </div>
   )
 }
